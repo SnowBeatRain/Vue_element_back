@@ -4,11 +4,12 @@
     <div>
       <el-header>
         <div style="float: left;height: 60px;">
-          <img src="../assets/logo.png" style="height:60px;" alt="">
+          <img src="../assets/logo.png" style="height:60px;width:60px;" alt="">
         </div>
-        <div style="float: right; font-size: 12px">
+        <div v-if="welcome" style="float: left;height: 60px;color:#909399">欢迎来到XXX后台管理系统</div>
+        <div style="float: right;color:#fff; font-size: 12px;margin-right:50px;">
           <el-dropdown>
-            <i class="el-icon-setting" style="margin-right: 15px"></i>
+            <i class="el-icon-setting" style="margin-right: 15px;color:#fff;"></i>
             <el-dropdown-menu slot="dropdown">
               <el-dropdown-item>
                 <div @click="jumpTo()">
@@ -25,21 +26,23 @@
           </el-dropdown>
           <span @click="aaa()">{{userName}}</span>
         </div>
-      <div class="clear"></div>
+        <div class="clear"></div>
       </el-header>
     </div>
     <!-- body -->
     <el-container>
-      <aside style="background-color: rgb(238, 241, 246);">
+      <aside style="background-color: #16181D;">
         <div style="text-align:center">
           <img src="../assets/logo.png" style="width:30px;height:30px;" alt="" @click="closeNav()">
         </div>
-        <el-menu class="el-menu-vertical-demo" :default-active="$route.path" router :unique-opened='true' @select="handleSelect" :collapse='iscloseNav'>
+        <el-menu style="background-color: #16181D;" class="el-menu-vertical-demo" :default-active="$route.path" router :unique-opened='true'
+          @select="handleSelect" :collapse='iscloseNav'>
           <template v-for="(item,index) in menuList">
             <el-submenu :index="index+''" :key="index">
               <template slot="title">
                 <i class="el-icon-menu"></i>
-                <span slot="title">{{item.name}}</span></template>
+                <span slot="title" style="color:#b3c0d1">{{item.name}}</span>
+              </template>
               <el-menu-item v-for="(ll,ii) in item.snippet" :key="ii" :index="'/'+ll.urlf.split('.')[0]">{{ll.title}}</el-menu-item>
             </el-submenu>
           </template>
@@ -52,11 +55,15 @@
         </el-main>
         <el-main v-else>
           <h2>黄晓明后台管理</h2>
-            <h2>友情链接：</h2>
-            <ul>
-              <li><a href="https://vuejs.org" target="_blank">黄晓明官网</a></li>
-              <li><a href="https://forum.vuejs.org" target="_blank">黄晓明影友会微博</a></li>
-            </ul>
+          <h2>友情链接：</h2>
+          <ul>
+            <li>
+              <a href="https://vuejs.org" target="_blank">黄晓明官网</a>
+            </li>
+            <li>
+              <a href="https://forum.vuejs.org" target="_blank">黄晓明影友会微博</a>
+            </li>
+          </ul>
         </el-main>
       </el-container>
     </el-container>
@@ -71,10 +78,15 @@ export default {
       menuList: [],
       userName: "",
       collapsed: false,
-      iscloseNav: false
+      iscloseNav: false,
+      welcome: true
     };
   },
   mounted() {
+    var w = window.innerWidth;
+    if (w < 500) {
+      this.welcome = false;
+    }
     this.userName = getCookie("username");
     var url = window.location.href;
     if (url.split("#")[1] == "/") {
@@ -162,7 +174,9 @@ export default {
     closeNav() {
       this.iscloseNav = !this.iscloseNav;
       if (this.iscloseNav) {
-        $(".el-aside").css({ width: "60px" });
+        $(".el-aside").css({
+          width: "60px"
+        });
       }
     }
   }
@@ -171,13 +185,14 @@ export default {
 
 <style scoped>
 /* @import "../../static/css/index.css"; */
+
 .el-header {
-  background-color: #b3c0d1;
+  background-color: #23262e;
   color: #333;
   line-height: 60px;
 }
 
-.el-aside {
-  color: #333;
+.el-menu--popup {
+  background-color: #16181d;
 }
 </style>
