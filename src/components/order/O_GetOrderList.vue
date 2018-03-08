@@ -31,20 +31,32 @@
     </el-col>
     <!-- table 内容 -->
     <el-table :data="orderList" style="width: 100%" :border='true'>
+      <el-table-column type="expand">
+        <template slot-scope="props">
+          <el-form label-position="left" inline class="demo-table-expand">
+            <el-form-item label="商品描述:">
+              <span>{{ props.row.ProductName }}</span>
+            </el-form-item>
+            <el-form-item label="实付金额:">
+              <span>{{ props.row.Price }}元</span>
+            </el-form-item>
+          </el-form>
+        </template>
+      </el-table-column>
       <el-table-column label="订单号" prop="OrderNo">
       </el-table-column>
       <el-table-column label="创建时间" prop="CreateTime">
       </el-table-column>
-      <el-table-column label="商品描述" prop="ProductName">
-      </el-table-column>
+      <!-- <el-table-column label="商品描述" prop="ProductName">
+      </el-table-column> -->
       <el-table-column label="用户名" prop="Name">
       </el-table-column>
       <el-table-column label="联系方式" prop="Phone">
       </el-table-column>
       <el-table-column label="订单状态" prop="Status" :formatter="Status">
       </el-table-column>
-      <el-table-column label="实付款（元）" prop="Price">
-      </el-table-column>
+      <!-- <el-table-column label="实付款（元）" prop="Price">
+      </el-table-column> -->
       <el-table-column label="操作">
         <template slot-scope="scope">
           <el-button size="mini" v-if="scope.row.Status == 2" type="primary" plain icon="el-icon-edit" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>

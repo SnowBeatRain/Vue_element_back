@@ -20,16 +20,26 @@
     </el-col>
     <!-- table 内容 -->
     <el-table :data="productList" style="width: 100%" :border='true'>
+    <el-table-column type="expand">
+      <template slot-scope="props">
+        <el-form label-position="left" inline class="demo-table-expand">
+          <el-form-item label="商品图片:">
+            <!-- <span>{{ props.row.name }}</span> -->
+            <img v-for="(item,index) in props.row.Image" :key="index" :src="mainurl+item" width="200" style="margin-left:20px;" />
+          </el-form-item>
+        </el-form>
+      </template>
+    </el-table-column>
       <el-table-column label="商品名称" prop="Name">
       </el-table-column>
-      <el-table-column label="商品图片" prop="Image" >
+      <!-- <el-table-column label="商品图片" prop="Image" >
         <template slot-scope="scope">
             <img v-for="(item,index) in scope.row.Image" :key="index" :src="mainurl+item" width="200" />
         </template>
+      </el-table-column> -->
+      <el-table-column label="商品价格" prop="Price" sortable>
       </el-table-column>
-      <el-table-column label="商品价格" prop="Price">
-      </el-table-column>
-      <el-table-column label="库存" prop="Stock">
+      <el-table-column label="库存" prop="Stock" sortable>
       </el-table-column>
       <el-table-column label="操作">
         <template slot-scope="scope">
