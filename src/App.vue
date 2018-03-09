@@ -31,4 +31,15 @@ export default {
   height: 36px;
   line-height: 36px !important;
 }
+/* 
+弹框的层级大于百度编辑器内置弹框
+解决：设置百度编辑器成绩大于2000就可以。
+*/
+
+#edui_fixedlayer {
+  z-index: 8000 !important;
+}
+.edui-dialog {
+  z-index: 9999 !important;
+}
 </style>
