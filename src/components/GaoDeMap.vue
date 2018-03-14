@@ -114,7 +114,7 @@ export default {
       var _this = this;
       this.$refs.locationMsg.validate(valid => {
         if (valid) {
-          bus.$emit("dialogVisible", false);
+          bus.$emit("ADialogVisible", false);
           bus.$emit("locationMsg", _this.locationMsg);
         } else {
           return false;

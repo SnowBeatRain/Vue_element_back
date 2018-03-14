@@ -1,19 +1,27 @@
 <template>
   <div class="box">
-    <el-button type="text" @click="dialogVisible = true">高德地图</el-button>
-    <el-dialog title="提示" :visible.sync="dialogVisible" width="70%" :before-close="handleClose">
-      <GaoDeMap :MapMsg="locationMsg" :dialogVisible="dialogVisible" ref="map"></GaoDeMap>
+    <el-button type="text" @click="ADialogVisible = true">高德地图</el-button>
+    <el-dialog title="提示" :visible.sync="ADialogVisible" width="70%" :before-close="handleClose">
+      <GaoDeMap :AMapMsg="locationMsg" :ADialogVisible="ADialogVisible" ref="map"></GaoDeMap>
     </el-dialog>
+
+    <el-button type="text" @click="BDialogVisible = true">百度地图</el-button>
+      <el-dialog title="提示" :visible.sync="BDialogVisible" width="70%" :before-close="handleClose">
+        <BaiDuMap :BMapMsg="locationMsg" :BDialogVisible="BDialogVisible" ref="map"></BaiDuMap>
+      </el-dialog>
   </div>
 </template>
 <script>
 import GaoDeMap from "./GaoDeMap.vue"; //在页面中引入高德地图
+import BaiDuMap from "./BaiDuMap.vue"; //在页面中引入高德地图
 import bus from "../utils/bus.js";
 export default {
   data() {
     return {
-      // 地图弹框
-      dialogVisible: false,
+      // 高德地图弹框
+      ADialogVisible: false,
+      // 百度地图弹框
+      BDialogVisible: false,
       // 高德地图经纬度
       locationMsg: {
         keyword: "",
@@ -22,7 +30,7 @@ export default {
       }
     };
   },
-  components: { GaoDeMap },
+  components: { GaoDeMap,BaiDuMap },
   methods: {
     // 关闭弹框
     handleClose(done) {
@@ -31,21 +39,28 @@ export default {
           done();
         })
         .catch(_ => {});
-    },
+    }
   },
   mounted() {
     // bus总线控制弹框关闭和参数获取
     bus.$on(
-      "dialogVisible",
+      "ADialogVisible",
       function(e) {
-        this.dialogVisible = e;
+        this.ADialogVisible = e;
       }.bind(this)
     );
     bus.$on(
       "locationMsg",
       function(e) {
-        console.log(e)
+        console.log(e);
         this.locationMsg = e;
+      }.bind(this)
+    );
+
+    bus.$on(
+      "BDialogVisible",
+      function(e) {
+        this.BDialogVisible = e;
       }.bind(this)
     );
   }
