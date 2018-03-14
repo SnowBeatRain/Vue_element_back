@@ -1,72 +1,57 @@
 <template>
-  <el-table
-    :data="tableData"
-    style="width: 100%">
-    <el-table-column
-      label="日期"
-      width="180">
-      <template slot-scope="scope">
-        <i class="el-icon-time"></i>
-        <span style="margin-left: 10px">{{ scope.row.date }}</span>
-      </template>
-    </el-table-column>
-    <el-table-column
-      label="姓名"
-      width="180">
-      <template slot-scope="scope">
-        <el-popover trigger="hover" placement="top">
-          <p>姓名: {{ scope.row.name }}</p>
-          <p>住址: {{ scope.row.address }}</p>
-          <div slot="reference" class="name-wrapper">
-            <el-tag size="medium">{{ scope.row.name }}</el-tag>
-          </div>
-        </el-popover>
-      </template>
-    </el-table-column>
-    <el-table-column label="操作">
-      <template slot-scope="scope">
-        <el-button
-          size="mini"
-          @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
-        <el-button
-          size="mini"
-          type="danger"
-          @click="handleDelete(scope.$index, scope.row)">删除</el-button>
-      </template>
-    </el-table-column>
-  </el-table>
-</template>
-
-<script>
+    <div class="box">
+      <el-button type="text" @click="dialogVisible = true">百度地图</el-button>
+      <el-dialog title="提示" :visible.sync="dialogVisible" width="70%" :before-close="handleClose">
+        <BaiDuMap :MapMsg="locationMsg" :dialogVisible="dialogVisible" ref="map"></BaiDuMap>
+      </el-dialog>
+    </div>
+  </template>
+  <script>
+  import BaiDuMap from "../BaiDuMap.vue"; //在页面中引入高德地图
+  import bus from "../../utils/bus.js";
   export default {
     data() {
       return {
-        tableData: [{
-          date: '2016-05-02',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄'
-        }, {
-          date: '2016-05-04',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1517 弄'
-        }, {
-          date: '2016-05-01',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1519 弄'
-        }, {
-          date: '2016-05-03',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1516 弄'
-        }]
-      }
+        // 地图弹框
+        dialogVisible: false,
+        // 高德地图经纬度
+        locationMsg: {
+          keyword: "",
+          lnglat: "",
+          address: ""
+        }
+      };
     },
+    components: { BaiDuMap },
     methods: {
-      handleEdit(index, row) {
-        console.log(index, row);
+      // 关闭弹框
+      handleClose(done) {
+        this.$confirm("确认关闭？")
+          .then(_ => {
+            done();
+          })
+          .catch(_ => {});
       },
-      handleDelete(index, row) {
-        console.log(index, row);
-      }
+    },
+    mounted() {
+      // bus总线控制弹框关闭和参数获取
+      bus.$on(
+        "dialogVisible",
+        function(e) {
+          this.dialogVisible = e;
+        }.bind(this)
+      );
+      bus.$on(
+        "locationMsg",
+        function(e) {
+          console.log(e)
+          this.locationMsg = e;
+        }.bind(this)
+      );
     }
-  }
-</script>
+  };
+  </script>
+  <style scoped>
+  
+  </style>
+  
