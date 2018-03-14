@@ -2,7 +2,9 @@
   <div class="box">
     <el-button type="text" @click="ADialogVisible = true">高德地图</el-button>
     <el-dialog title="提示" :visible.sync="ADialogVisible" width="70%" :before-close="handleClose">
-      <GaoDeMap :AMapMsg="locationMsg" :ADialogVisible="ADialogVisible" ref="map"></GaoDeMap>
+      <!-- 此组件不需要父传子，所以不需要属性传值，可以直接使用 （下同） -->
+      <GaoDeMap></GaoDeMap>
+      <!-- <GaoDeMap :AMapMsg="locationMsg" :ADialogVisible="ADialogVisible" ref="map"></GaoDeMap> -->
     </el-dialog>
 
     <el-button type="text" @click="BDialogVisible = true">百度地图</el-button>
