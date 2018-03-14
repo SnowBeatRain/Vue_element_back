@@ -86,7 +86,8 @@ export default {
           }
         });
       });
-      var ac = new BMap.Autocomplete({ //建立一个自动完成的对象
+      var ac = new BMap.Autocomplete({
+        //建立一个自动完成的对象
         input: "suggestId",
         location: map
       });
@@ -170,7 +171,7 @@ export default {
         if (valid) {
           bus.$emit("BDialogVisible", false);
           bus.$emit("locationMsg", _this.locationMsg);
-        // console.log(_this.locationMsg)
+          // console.log(_this.locationMsg)
         } else {
           return false;
         }
@@ -182,17 +183,9 @@ export default {
   }
 };
 </script>
-<style scoped>
+<style>
 .box {
   width: 100%;
   height: 100%;
-}
-
-.mymap {
-  width: 100%;
-  height: 500px;
-}
-.amap-sug-result {
-  z-index: 3000;
 }
 </style>

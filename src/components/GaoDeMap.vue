@@ -137,7 +137,4 @@ export default {
   width: 100%;
   height: 500px;
 }
-.amap-sug-result {
-  z-index: 3000;
-}
 </style>

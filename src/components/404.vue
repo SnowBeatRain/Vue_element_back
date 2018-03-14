@@ -2,14 +2,15 @@
   <div class="box">
     <el-button type="text" @click="ADialogVisible = true">高德地图</el-button>
     <el-dialog title="提示" :visible.sync="ADialogVisible" width="70%" :before-close="handleClose">
-      <!-- 此组件不需要父传子，所以不需要属性传值，可以直接使用 （下同） -->
+      <!-- 此组件不需要父传子，所以不需要属性传值，可以直接使用 -->
       <GaoDeMap></GaoDeMap>
       <!-- <GaoDeMap :AMapMsg="locationMsg" :ADialogVisible="ADialogVisible" ref="map"></GaoDeMap> -->
     </el-dialog>
 
     <el-button type="text" @click="BDialogVisible = true">百度地图</el-button>
       <el-dialog title="提示" :visible.sync="BDialogVisible" width="70%" :before-close="handleClose">
-        <BaiDuMap :BMapMsg="locationMsg" :BDialogVisible="BDialogVisible" ref="map"></BaiDuMap>
+        <!-- <BaiDuMap :BMapMsg="locationMsg" :BDialogVisible="BDialogVisible" ref="map"></BaiDuMap> -->
+        <BaiDuMap></BaiDuMap>
       </el-dialog>
   </div>
 </template>
@@ -24,7 +25,7 @@ export default {
       ADialogVisible: false,
       // 百度地图弹框
       BDialogVisible: false,
-      // 高德地图经纬度
+      // 地图经纬度  通用
       locationMsg: {
         keyword: "",
         lnglat: "",
@@ -32,7 +33,7 @@ export default {
       }
     };
   },
-  components: { GaoDeMap,BaiDuMap },
+  components: { GaoDeMap, BaiDuMap },
   methods: {
     // 关闭弹框
     handleClose(done) {
@@ -68,6 +69,11 @@ export default {
   }
 };
 </script>
-<style scoped>
-
+<style>
+.amap-sug-result {
+  z-index: 4000!important;
+}
+#tangram-suggestion--TANGRAM__u-main{
+  z-index: 3000!important;
+}
 </style>
