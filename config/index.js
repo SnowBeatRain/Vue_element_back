@@ -22,7 +22,7 @@ module.exports = {
 
     proxyTable: {
       "/hxmback": {
-        target: "http://hxm.nbxuanma.com",
+        target: "https://api.huangxiaoming.com.cn",
         changeOrigin: true,
         pathRewrite: {
           '^/hxmback': '/'
