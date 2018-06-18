@@ -54,14 +54,14 @@
           <router-view></router-view>
         </el-main>
         <el-main v-else>
-          <h2>黄晓明后台管理</h2>
+          <h2>后台管理</h2>
           <h2>友情链接：</h2>
           <ul>
             <li>
-              <a href="https://vuejs.org" target="_blank">黄晓明官网</a>
+              <a href="https://vuejs.org" target="_blank">官网</a>
             </li>
             <li>
-              <a href="https://forum.vuejs.org" target="_blank">黄晓明影友会微博</a>
+              <a href="https://forum.vuejs.org" target="_blank">微博</a>
             </li>
           </ul>
         </el-main>

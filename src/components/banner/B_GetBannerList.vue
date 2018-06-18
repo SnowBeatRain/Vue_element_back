@@ -1,7 +1,7 @@
 <template>
   <div>
     <el-breadcrumb separator-class="el-icon-arrow-right" class="crumb">
-      <el-breadcrumb-item :to="{ path: '/' }">黄晓明后台</el-breadcrumb-item>
+      <el-breadcrumb-item :to="{ path: '/' }">后台</el-breadcrumb-item>
       <el-breadcrumb-item>Banner管理</el-breadcrumb-item>
     </el-breadcrumb>
     <!--检索条-->
