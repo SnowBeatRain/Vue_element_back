@@ -27,6 +27,9 @@ export default {
   width: 100%;
   height: calc(100% - 60px);
 }
+.el-main{
+  padding: 0 20px 15px!important;
+}
 .crumb {
   height: 36px;
   line-height: 36px !important;

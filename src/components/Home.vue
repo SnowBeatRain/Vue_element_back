@@ -50,10 +50,13 @@
       </aside>
       <!-- 右侧路由信息 -->
       <el-container>
+        
         <el-main v-if="collapsed">
+          <v-tag></v-tag>
           <router-view></router-view>
         </el-main>
         <el-main v-else>
+          <v-tag></v-tag>
           <h2>后台管理</h2>
           <h2>友情链接：</h2>
           <ul>
@@ -71,6 +74,8 @@
 </template>
 
 <script>
+import Tags from "./tags";
+
 export default {
   data: function() {
     return {
@@ -81,6 +86,9 @@ export default {
       iscloseNav: false,
       welcome: true
     };
+  },
+  components: {
+    "v-tag": Tags
   },
   mounted() {
     var w = window.innerWidth;
@@ -194,5 +202,9 @@ export default {
 
 .el-menu--popup {
   background-color: #16181d;
+}
+.el-menu-vertical-demo:not(.el-menu--collapse) {
+  width: 300px;
+  min-height: 400px;
 }
 </style>

@@ -3,6 +3,8 @@
 import 'babel-polyfill'
 
 import Vue from 'vue'
+import Vuex from 'vuex';
+import store from './store/store';
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 import App from './App'
@@ -18,10 +20,13 @@ import '../static/UEtidor/ueditor.all.min.js'
 import '../static/UEtidor/lang/zh-cn/zh-cn.js'
 import '../static/UEtidor/ueditor.parse.min.js'
 
+
+Vue.use(Vuex)
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
   router,
+  store,
   components: { App },
   template: '<App/>'
 })

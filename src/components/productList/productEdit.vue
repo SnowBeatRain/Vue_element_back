@@ -51,7 +51,7 @@
     <el-dialog title="图文编辑" :visible.sync="openDetails">
       <!-- <button @click="getUEContent()">获取内容</button> -->
       <div class="editor-container">
-        <UEditor :defaultMsg='defaultMsg' :config='config' ref="ueditor"></UEditor>
+        <UEditor :defaultMsg='defaultMsg' :config='config' v-if="openDetails" ref="ueditor"></UEditor>
       </div>
       <div slot="footer" class="dialog-footer">
         <el-button @click.native="openDetails=false">取消</el-button>
@@ -284,7 +284,6 @@ export default {
       var content = this.$refs.ueditor.getUEContent();
       this.editForm.Details = encodeURIComponent(content);
       this.openDetails = false;
-      console.log(this.editForm);
     },
     /*
       重置表单
